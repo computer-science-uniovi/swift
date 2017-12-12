@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse'
+version = '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['.']
+            exclude 'gradle/*'
+        }
+    }
+}
+
+dependencies {
+    compile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.1'
+}
+
+
