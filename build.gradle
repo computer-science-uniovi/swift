@@ -26,4 +26,7 @@ dependencies {
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version:'5.0.1'
 }
 
+task wrapper(type: Wrapper) {
+   gradleVersion = '3.5' //version required
+}
 
