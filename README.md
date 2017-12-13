@@ -1,7 +1,7 @@
 # Welcome to Swift!
 A fast, lean and secure java framework designed for and by java developers.
 
-[![Build Status](https://travis-ci.org/computer-engineering-uniovi/swift.svg?branch=master)](https://travis-ci.org/computer-engineering-uniovi/swift)
+[![Build Status](https://travis-ci.org/computer-engineering-uniovi/swift.svg?branch=development)](https://travis-ci.org/computer-engineering-uniovi/swift)
 [![](https://jitpack.io/v/computer-engineering-uniovi/NSXMLParser.svg)](https://jitpack.io/#computer-engineering-uniovi/NSXMLParser)
 
 #### Overview
