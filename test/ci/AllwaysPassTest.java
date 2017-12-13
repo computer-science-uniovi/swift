@@ -9,6 +9,7 @@ public class AllwaysPassTest {
 	@Test public void test() {
 		assertEquals( true, true );
 		System.out.println( "Test passed!" );
+		fail();
 	}
 
 }
