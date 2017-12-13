@@ -2,6 +2,7 @@ language: java
 
 before_install:
  - chmod +x gradlew
+ - gradle wrapper
 
 jdk:
   - oraclejdk8
