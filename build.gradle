@@ -19,6 +19,9 @@ sourceSets {
             srcDirs = ['stdlib', 'test']
         }
     }
+    integrationTest {
+	java.srcDir file('test')
+    }
 }
 
 dependencies {
