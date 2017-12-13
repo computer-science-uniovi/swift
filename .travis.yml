@@ -1,9 +1,13 @@
-language: java
-
-before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+image: java:8-jdk
+before_script:
+  - echo `pwd`
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  - rm -f  .gradle/caches/modules-2/modules-2.lock
+  - rm -fr .gradle/caches/*/plugin-resolution/
 cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+build:
+  script:
+    - ./gradlew build
