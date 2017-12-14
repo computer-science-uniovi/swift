@@ -16,11 +16,12 @@ import java.io.File;
  * 
  * @author Guillermo Facundo Colunga
  */
-public class NSFile extends File {
+public class NSFile extends NSObject {
 
 	private static final long serialVersionUID = 2908707080448348423L;
 
 	private String _path, _fileName;
+	private File _file;
 
 	/**
 	 * Creates an instance of NSFile from a path and a filename;
@@ -29,7 +30,7 @@ public class NSFile extends File {
 	 * @param fileName The filename with the extension.
 	 */
 	public NSFile( String path, String fileName ) {
-		super( path + "/" + fileName );
+		this._file = new File(path + "/" + fileName);
 		this._path = path;
 		this._fileName = fileName;
 	}
@@ -53,6 +54,10 @@ public class NSFile extends File {
 	 */
 	public String completePath() {
 		return _path + "/" + _fileName;
+	}
+	
+	public File self() {
+		return this._file;
 	}
 
 }
