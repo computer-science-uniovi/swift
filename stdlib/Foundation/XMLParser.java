@@ -17,7 +17,7 @@ import java.io.Serializable;
  * 
  * @author Guillermo Facundo Colunga
  */
-public class XMLParser extends NSObject implements Serializable {
+public class XMLParser implements Serializable {
 
 	private static final long serialVersionUID = 1939036191695213367L;
 	

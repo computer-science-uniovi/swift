@@ -10,13 +10,14 @@
 package Foundation;
 
 import java.io.File;
+import java.io.Serializable;
 
 /**
  * Instance of NSFile.
  * 
  * @author Guillermo Facundo Colunga
  */
-public class NSFile extends NSObject {
+public class NSFile implements Serializable {
 
 	private static final long serialVersionUID = 2908707080448348423L;
 
