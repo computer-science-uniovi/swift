@@ -1,5 +1,5 @@
 # Welcome to Swift!
-A fast, lean and secure java library designed for and by java developers. Helps you build java applications!
+A java library designed for and by java developers that is focused on safety, performance, and expressivity. Helps you build java applications!
 
 [![Build Status](https://travis-ci.org/computer-engineering-uniovi/swift.svg?branch=development)](https://travis-ci.org/computer-engineering-uniovi/swift)
 [![](https://jitpack.io/v/computer-engineering-uniovi/NSXMLParser.svg)](https://jitpack.io/#computer-engineering-uniovi/NSXMLParser)
