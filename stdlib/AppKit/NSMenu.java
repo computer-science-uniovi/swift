@@ -9,10 +9,11 @@
  */
 package AppKit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import Foundation.NSObject;
+import Foundation.CommandLine;
 
 /**
  * Instance of NSAbstractMenu.java
@@ -20,7 +21,7 @@ import Foundation.NSObject;
  * @author Guillermo Facundo Colunga, based on the AlbUtil project.
  * @version 1.0
  */
-public class NSAbstractMenu extends NSObject implements NSMenuAction, ReadLine {
+public class NSMenu implements NSMenuAction, Serializable {
 
 	private static final long serialVersionUID = -6625275915537248016L;
 
@@ -60,8 +61,8 @@ public class NSAbstractMenu extends NSObject implements NSMenuAction, ReadLine {
 		Integer opt;
 		
 		do {
-			print("Opcion: ", null);
-			opt = Integer.parseInt( readLine() );
+			CommandLine.print("Opcion: ", null);
+			opt = Integer.parseInt( CommandLine.readLine() );
 			
 		} while (opt == null || opt < EXIT);
 	
@@ -88,20 +89,20 @@ public class NSAbstractMenu extends NSObject implements NSMenuAction, ReadLine {
 	}
 
 	protected void printMenuSeparator(String text) {
-		print( text );
+		CommandLine.print( text );
 	}
 
 	protected void printMenuOption(int opc, String text) {
-		print("\t " + opc + "- " + text);
+		CommandLine.print("\t " + opc + "- " + text);
 	}
 
 	protected void printMenuFooter() {
-		print("");
-		print("\t 0- Salir");
+		CommandLine.print("");
+		CommandLine.print("\t 0- Salir");
 	}
 
 	protected void printMenuHeader() {
-		print("");
+		CommandLine.print("");
 	}
 
 	private boolean _isOptionRow(Object[] row) {
