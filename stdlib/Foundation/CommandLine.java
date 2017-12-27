@@ -13,33 +13,39 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Instance of CommandLine.java
+ * 
+ * @author
+ * @version
+ */
 public final class CommandLine {
-	
+
 	/**
-	 * Prints a string.  If the argument is <code>null</code> then the string
-     * <code>"null"</code> is printed.  Otherwise, the string's characters are
-     * converted into bytes according to the platform's default character
-     * encoding, and these bytes are written in exactly the manner of the
-     * <code>{@link #write(int)}</code> method.
+	 * Prints a string. If the argument is <code>null</code> then the string
+	 * <code>"null"</code> is printed. Otherwise, the string's characters are
+	 * converted into bytes according to the platform's default character
+	 * encoding, and these bytes are written in exactly the manner of the
+	 * <code>{@link #write(int)}</code> method.
 	 * 
-	 * @param		text		The <code>String</code> to be printed
+	 * @param text The <code>String</code> to be printed
 	 */
 	public static void print( Object object ) {
 		System.out.print( object.toString() + "\n" );
 	}
 
 	/**
-	 * Prints a string.  If the argument is <code>null</code> then the string
-     * <code>"null"</code> is printed.  Otherwise, the string's characters are
-     * converted into bytes according to the platform's default character
-     * encoding, and these bytes are written in exactly the manner of the
-     * <code>{@link #write(int)}</code> method.
+	 * Prints a string. If the argument is <code>null</code> then the string
+	 * <code>"null"</code> is printed. Otherwise, the string's characters are
+	 * converted into bytes according to the platform's default character
+	 * encoding, and these bytes are written in exactly the manner of the
+	 * <code>{@link #write(int)}</code> method.
 	 * 
-	 * @param		text		The <code>String</code> to be printed
-	 * @param		terminator	The terminator symbol. If null "".
+	 * @param text The <code>String</code> to be printed
+	 * @param terminator The terminator symbol. If null "".
 	 */
 	public static void print( Object object, String terminator ) {
-		if(terminator == null)
+		if (terminator == null)
 			terminator = "";
 		System.out.print( object.toString() + terminator );
 	}

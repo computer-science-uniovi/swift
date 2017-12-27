@@ -9,6 +9,12 @@
  */
 package Foundation;
 
+/**
+ * Instance of ClosedRange.java
+ * 
+ * @author 
+ * @version
+ */
 public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
 
 	private ClosedRange( Bound<T> min, Bound<T> max ) {
