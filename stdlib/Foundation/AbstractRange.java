@@ -9,6 +9,12 @@
  */
 package Foundation;
 
+/**
+ * Instance of AbstractRange.java
+ * 
+ * @author 
+ * @version
+ */
 public abstract class AbstractRange<T extends Comparable<T>> implements Range<T> {
 
 	private Bound<T> min, max;
