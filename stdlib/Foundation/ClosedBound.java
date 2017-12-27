@@ -9,6 +9,12 @@
  */
 package Foundation;
 
+/**
+ * Instance of ClosedBound.java
+ * 
+ * @author 
+ * @version
+ */
 public class ClosedBound<T extends Comparable<T>> implements Bound<T> {
 	
 	private T value;
