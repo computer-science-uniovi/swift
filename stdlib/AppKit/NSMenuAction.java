@@ -12,11 +12,11 @@ package AppKit;
 /**
  * Instance of NSMenuAction.java
  * 
- * @author 
- * @version 
+ * @author
+ * @version
  */
-public interface NSMenuAction {
-	
+@FunctionalInterface public interface NSMenuAction {
+
 	/**
 	 * Executes the action.
 	 * 

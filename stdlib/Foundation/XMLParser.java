@@ -20,12 +20,12 @@ import java.io.Serializable;
 public class XMLParser implements Serializable {
 
 	private static final long serialVersionUID = 1939036191695213367L;
-	
+
 	// private NSFile _file;
-	
-	public XMLParser(NSFile file) {
+
+	public XMLParser( NSFile file ) {
 		// this._file = file;
 	}
-	
+
 	// TO DO....
 }
