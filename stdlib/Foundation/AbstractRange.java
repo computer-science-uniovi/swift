@@ -12,12 +12,12 @@ package Foundation;
 /**
  * Instance of AbstractRange.java
  * 
- * @author 
+ * @author
  * @version
  */
 public abstract class AbstractRange<T extends Comparable<T>> implements Range<T> {
 
-	private Bound<T> min, max;
+	private Bound<T> _min, _max;
 
 	protected AbstractRange( Bound<T> min, Bound<T> max ) {
 		if (min == null || max == null || min.compareTo( max ) > -1) {
@@ -25,12 +25,20 @@ public abstract class AbstractRange<T extends Comparable<T>> implements Range<T>
 					+ " min = " + min
 					+ " max = " + max );
 		}
-		this.min = min;
-		this.max = max;
+		this._min = min;
+		this._max = max;
 	}
-	
-	public Bound<T> min() { return this.min; }
-	
-	public Bound<T> max() { return this.max; }
+
+	@Override public Bound<T> min() {
+		return this._min;
+	}
+
+	@Override public Bound<T> max() {
+		return this._max;
+	}
+
+	@Override public String toString() {
+		return "[" + _min.value() + "..." + _max.value() + "]";
+	}
 
 }

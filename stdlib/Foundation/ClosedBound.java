@@ -12,18 +12,18 @@ package Foundation;
 /**
  * Instance of ClosedBound.java
  * 
- * @author 
+ * @author
  * @version
  */
 public class ClosedBound<T extends Comparable<T>> implements Bound<T> {
-	
+
 	private T value;
-	
-	private ClosedBound(T value) {
+
+	private ClosedBound( T value ) {
 		this.value = value;
 	}
-	
-	public static <K extends Comparable<K>> Bound<K> of(K value) {
+
+	public static <K extends Comparable<K>> ClosedBound<K> of( K value ) {
 		return new ClosedBound<K>( value );
 	}
 

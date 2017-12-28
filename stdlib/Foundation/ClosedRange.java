@@ -9,10 +9,12 @@
  */
 package Foundation;
 
+import java.util.Optional;
+
 /**
  * Instance of ClosedRange.java
  * 
- * @author 
+ * @author
  * @version
  */
 public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
@@ -21,17 +23,53 @@ public class ClosedRange<T extends Comparable<T>> extends AbstractRange<T> {
 		super( min, max );
 	}
 
-	@Override public boolean contains( T element ) {
-		return ( min().value().compareTo( element ) == -1
-				&& element.compareTo( max().value() ) == -1 );
+	/**
+	 * Factory to create a ClosedRange.
+	 * 
+	 * @param min value of the range.
+	 * @param max value of the range.
+	 * @return the ClosedRange ready to be use.
+	 */
+	public static <K extends Comparable<K>> AbstractRange<K> of( K min, K max ) {
+		Optional<K> _min = Optional.ofNullable( min ),
+				_max = Optional.ofNullable( max );
+
+		return new ClosedRange<K>(
+				ClosedBound.of(
+						_min.orElseThrow( () -> new IllegalArgumentException(
+								"The min value cannot be null." ) ) ),
+				ClosedBound.of(
+						_max.orElseThrow( () -> new IllegalArgumentException(
+								"The max value cannot be null." ) ) ) );
 	}
 
-	public static <K extends Comparable<K>> AbstractRange<K> of( K min, K max ) {
-		return new ClosedRange<K>( ClosedBound.of( min ), ClosedBound.of( max ) );
+	/**
+	 * Factory to create a ClosedRange.
+	 * 
+	 * @param min value of the range.
+	 * @param max value of the range.
+	 * @return the ClosedRange ready to be use.
+	 */
+	public static <K extends Comparable<K>> AbstractRange<K> of( ClosedBound<K> min,
+			ClosedBound<K> max ) {
+		Optional<ClosedBound<K>> _min = Optional.ofNullable( min ),
+				_max = Optional.ofNullable( max );
+
+		return new ClosedRange<K>(
+				_min.orElseThrow( () -> new IllegalArgumentException(
+						"The min value cannot be null." ) ),
+				_max.orElseThrow( () -> new IllegalArgumentException(
+						"The max value cannot be null." ) ) );
 	}
-	
-	public static <K extends Comparable<K>> AbstractRange<K> of( ClosedBound<K> min, ClosedBound<K> max ) {
-		return new ClosedRange<K>( min , max );
+
+	@Override public boolean contains( T element ) {
+		Optional<T> _element = Optional.ofNullable( element );
+		// Check if the element is null.
+		_element.orElseThrow(
+				() -> new IllegalArgumentException( "The element to check cannot be null." ) );
+
+		return ( min().value().compareTo( _element.get() ) == -1
+				&& _element.get().compareTo( max().value() ) == -1 );
 	}
 
 	@Override public boolean overlaps( Range<T> other ) {

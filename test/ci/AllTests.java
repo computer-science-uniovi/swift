@@ -18,8 +18,8 @@ import Foundation.RangeTest;
 /**
  * Instance of AllTests.java
  * 
- * @author 
- * @version 
+ * @author
+ * @version
  */
 @RunWith(Suite.class) @SuiteClasses({ RangeTest.class }) public class AllTests {
 
