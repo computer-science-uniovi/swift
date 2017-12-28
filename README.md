@@ -2,7 +2,7 @@
 A java library designed for and by java developers that is focused on safety, performance, and expressivity. Helps you build java applications!
 
 [![Build Status](https://travis-ci.org/computer-engineering-uniovi/swift.svg?branch=development)](https://travis-ci.org/computer-engineering-uniovi/swift)
-[![](https://jitpack.io/v/computer-engineering-uniovi/NSXMLParser.svg)](https://jitpack.io/#computer-engineering-uniovi/NSXMLParser)
+[![](https://jitpack.io/v/computer-engineering-uniovi/swift.svg)](https://jitpack.io/#computer-engineering-uniovi/swift)
 
 #### Overview
 Swift is a java library that reduces the programing time and complexity by providing a fast way to implement recurrent lines of code in java. And furthermore, adds new features that programmers had been asking for years! It rules!!
