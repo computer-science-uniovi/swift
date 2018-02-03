@@ -12,7 +12,7 @@ package Foundation;
 /**
  * Instance of Bound.java
  * 
- * @author 
+ * @author
  * @version
  */
 public interface Bound<T extends Comparable<T>> extends Comparable<Bound<T>> {

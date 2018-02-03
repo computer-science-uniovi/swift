@@ -13,13 +13,24 @@ package Foundation;
  * A half-open interval over a comparable type, from a lower bound up to, but
  * not including, an upper bound.
  *
- * @author guille
- * @version
- * @since 2017"4"522017
- * @formatter Oviedo Computing Community
- * @param <T>
+ * @author Guillermo Facundo Colunga
+ * @param <T> the main type of the range.
  */
 public interface Range<T extends Comparable<T>> {
+
+	/**
+	 * @return the minimum value of the range. Depending if its an open range or
+	 *         a closed range this value will or will not be inside the range
+	 *         itself.
+	 */
+	public Bound<T> min();
+
+	/**
+	 * @return the maximum value of the rage. Depending if its an open range or
+	 *         a closed range this value will or will not be inside the range
+	 *         itself.
+	 */
+	public Bound<T> max();
 
 	/**
 	 * Returns a Boolean value indicating whether the given element is contained

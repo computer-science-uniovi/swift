@@ -31,7 +31,7 @@ public class NSFile implements Serializable {
 	 * @param fileName The filename with the extension.
 	 */
 	public NSFile( String path, String fileName ) {
-		this._file = new File(path + "/" + fileName);
+		this._file = new File( path + "/" + fileName );
 		this._path = path;
 		this._fileName = fileName;
 	}
@@ -56,7 +56,7 @@ public class NSFile implements Serializable {
 	public String completePath() {
 		return _path + "/" + _fileName;
 	}
-	
+
 	public File self() {
 		return this._file;
 	}
