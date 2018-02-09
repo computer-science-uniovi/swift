@@ -10,10 +10,11 @@ import org.junit.Test;
 
 public class CSVFileTest {
 
-	private CSVFile<String, String> file;
+	private CSVFile file;
 
 	@Before public void setUp() {
-		file = new CSVFile<String, String>( new URL( "noname.csv" ) );
+		String[] headers = {"id","kind"};
+		file = new CSVFile( new URL( "noname.csv" ), headers);
 	}
 
 	@After public void tearDown() {
@@ -32,15 +33,14 @@ public class CSVFileTest {
 	}
 
 	@Test public void test() {
-		String[] data = { "first", "second", "third" };
-		String[] data2 = { "ss", "aa", "22" };
-		file.getContent().put( "1", data );
-		file.getContent().put( "2", data2 );
+		file.setHeaders( "id", "name", "suname1", "surname2" );
+		file.addRow( "1", "pepe", "gutiezed", "calvo" );
+		file.addRow( "2", "carlos", "lala", "lolo" );
 		file.setSeparator( "," );
 		file.save();
 
-		file = CSVFile.of( new URL( "noname.csv" ), "," );
-		assertArrayEquals( data, file.getContent().get( "1" ) );
+		file = CSVFile.of( new URL( "noname.csv" ), ",", "id", "name", "suname1", "surname2" );
+		assertEquals( "pepe", file.getRowAt( 0 ).getColumn( "name" ) );
 	}
 
 }

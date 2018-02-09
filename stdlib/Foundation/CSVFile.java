@@ -1,3 +1,12 @@
+/*
+ * This source file is part of the swift open source project.
+ *
+ * Copyright (c) 2018 willy and the swift project authors.
+ * Licensed under GNU General Public License v3.0.
+ *
+ * See /LICENSE for license information.
+ * 
+ */
 package Foundation;
 
 import java.io.BufferedReader;
@@ -6,23 +15,40 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Hashtable;
-import java.util.Map.Entry;
+import java.util.ArrayList;
+import java.util.List;
 
-public class CSVFile<K, T> {
+public class CSVFile {
 
 	private URL _urlToFile;
-	private String _separator = "";
-	private String _terminator = "";
-	private Hashtable<K, T[]> _content = new Hashtable<K, T[]>();
+	private String _separator = "", _terminator = "";
+	private List<CSVRecord> _rows;
+	private String[] _headers;
 
-	public CSVFile( URL urlToFile ) {
+	/**
+	 * Allocates a CSVFile object and initializes it so that it represents. You
+	 * have to include at least one header.
+	 * 
+	 * @param urlToFile is the path to file + file name + extension.
+	 * @param headers of the csv file.
+	 */
+	public CSVFile( URL urlToFile, String... headers ) {
 		this._urlToFile = urlToFile;
+		this._rows = new ArrayList<CSVRecord>();
+		this._headers = headers;
 	}
 
-	public CSVFile( URL urlToFile, String separator, String terminator ) {
-		this( urlToFile );
+	/**
+	 * Allocates a CSVFile object and initializes it so that it represents. You
+	 * have to include at least one header.
+	 * 
+	 * @param urlToFile is the path to file + file name + extension.
+	 * @param separator of the fields in the csv.
+	 * @param terminator of the row in the csv.
+	 * @param headers of the csv file.
+	 */
+	public CSVFile( URL urlToFile, String separator, String terminator, String... headers ) {
+		this( urlToFile, headers );
 		this._separator = separator;
 		this._terminator = terminator;
 	}
@@ -66,50 +92,62 @@ public class CSVFile<K, T> {
 		this._terminator = _terminator;
 	}
 
-	/**
-	 * @return the _content
-	 */
-	public Hashtable<K, T[]> getContent() {
-		return _content;
+	public String[] getHeaders() {
+		return this._headers;
 	}
 
-	/**
-	 * @param _content the _content to set
-	 */
-	public void setContent( Hashtable<K, T[]> _content ) {
-		this._content = _content;
+	public void setHeaders( String... headers ) {
+		this._headers = headers;
 	}
 
-	/**
-	 * 
-	 * @param key
-	 * @param values
-	 */
-	public void addData( K key, @SuppressWarnings("unchecked") T... values ) {
-		this.getContent().put( key, values );
+	public void addRows( List<CSVRecord> rows ) {
+		this._rows = rows;
 	}
 
-	@SuppressWarnings("unchecked") public static <K, T> CSVFile<K, T> of( URL urlToFile,
-			String separator ) {
+	public void addRow( CSVRecord row ) {
+		this._rows.add( row );
+	}
 
-		CSVFile<K, T> csv;
+	public void addRow( String... values ) {
+		CSVRecord row = new CSVRecord( this );
+		row.addColumns( values );
+		this._rows.add( row );
+	}
 
-		csv = new CSVFile<K, T>( urlToFile );
+	public List<CSVRecord> getRows() {
+		return this._rows;
+	}
+
+	public CSVRecord getRowAt( int index ) {
+		return this._rows.get( index );
+	}
+
+	public String getValueFromRow( int row, String header ) {
+		return this._rows.get( row ).getColumn( header );
+	}
+
+	public static <K, T> CSVFile of( URL urlToFile, String separator, String... headers ) {
+
+		CSVFile csv;
+
+		csv = new CSVFile( urlToFile, headers );
 		csv.setSeparator( separator );
 
 		try (BufferedReader br = new BufferedReader(
 				new FileReader( csv.getURL().getFileURL() ) )) {
+			CSVRecord row;
 			for (String line; ( line = br.readLine() ) != null;) {
+				row = new CSVRecord( csv );
 				String[] parts = line.split( csv.getSeparator() );
-				String[] body = Arrays.copyOfRange( parts, 1, parts.length );
-				csv.getContent().put( ( (K) parts[0] ), ( (T[]) body ) );
+				for (String part : parts) {
+					row.addColumn( part );
+				}
+				csv.addRow( row );
 			}
 			// line is not visible here.
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return csv;
@@ -123,21 +161,19 @@ public class CSVFile<K, T> {
 			e.printStackTrace();
 		}
 		PrintWriter printWriter = new PrintWriter( fileWriter );
-		for (Entry<K, T[]> entry : getContent().entrySet()) {
+		for (CSVRecord row : _rows) {
 			StringBuilder sb = new StringBuilder();
 
-			sb.append( entry.getKey() + getSeparator() );
-			int iterations = 0;
-			for (T s : entry.getValue()) {
-				iterations++;
-				sb.append( s );
-				if (!( entry.getValue().length == iterations ))
-					sb.append( getSeparator() );
+			for (String header : _headers) {
+				sb.append( row.getColumn( header ) );
+				if (header != _headers[_headers.length - 1])
+					sb.append( "," );
 				else
 					sb.append( "\n" );
 			}
 			printWriter.print( sb.toString() );
 		}
+
 		printWriter.close();
 	}
 
