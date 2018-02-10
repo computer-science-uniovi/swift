@@ -10,40 +10,37 @@ import org.junit.Test;
 
 public class CSVFileTest {
 
-    private CSVFile file;
+	private CSVFile file;
 
-    @Before
-    public void setUp() {
-	file = new CSVFile(new URL("noname.csv"));
-    }
-
-    @After
-    public void tearDown() {
-	try {
-
-	    File file = new File("noname.csv");
-
-	    if (file.delete()) {
-		System.out.println(file.getName() + " is deleted!");
-	    } else {
-		System.out.println("Delete operation is failed.");
-	    }
-	} catch (Exception e) {
-	    e.printStackTrace();
+	@Before public void setUp() {
+		String[] headers = {"id","kind"};
+		file = new CSVFile( new URL( "noname.csv" ), headers);
 	}
-    }
 
-    @Test
-    public void test() {
-	String[] data = { "first", "second", "third" };
-	String[] data2 = { "ss", "aa", "22" };
-	file.getContent().put("1", data);
-	file.getContent().put("2", data2);
-	file.setSeparator(",");
-	file.save();
+	@After public void tearDown() {
+		try {
 
-	file = CSVFile.of(new URL("noname.csv"), ",");
-	assertArrayEquals(data, file.getContent().get("1"));
-    }
+			File file = new File( "noname.csv" );
+
+			if (file.delete()) {
+				System.out.println( file.getName() + " is deleted!" );
+			} else {
+				System.out.println( "Delete operation is failed." );
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test public void test() {
+		file.setHeaders( "id", "name", "suname1", "surname2" );
+		file.addRow( "1", "pepe", "gutiezed", "calvo" );
+		file.addRow( "2", "carlos", "lala", "lolo" );
+		file.setSeparator( "," );
+		file.save();
+
+		file = CSVFile.of( new URL( "noname.csv" ), ",", "id", "name", "suname1", "surname2" );
+		assertEquals( "pepe", file.getRowAt( 0 ).getColumn( "name" ) );
+	}
 
 }
