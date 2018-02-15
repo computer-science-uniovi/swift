@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CSVFileTest {
-
 	private CSVFile file;
 
 	@Before public void setUp() {
