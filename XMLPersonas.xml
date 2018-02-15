@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Personas>
+  <Person>
+    <name>Paco</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Pepe</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>M</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Rosendo</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Kelly</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Albus</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Bulfric</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+  <Person>
+    <name>Percibal</name>
+    <surname>SL8R</surname>
+    <age>18</age>
+  </Person>
+</Personas>
