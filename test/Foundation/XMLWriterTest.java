@@ -27,8 +27,8 @@ public class XMLWriterTest {
 		p1.add(new Point(6, 9));
 		p1.add(new Point(5, 7));
 		p1.add(new Point(1, 2));
-
-		assertEquals(expected, XMLWriter._writeXML(p1, "Points"));
+		
+		assertEquals(expected, new XMLWriter().save(p1, "Points"));
 
 	}
 

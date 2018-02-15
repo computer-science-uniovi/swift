@@ -3,8 +3,8 @@ package Foundation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class XMLWriter {
@@ -14,10 +14,11 @@ public class XMLWriter {
 	 * of the document and it´s name.
 	 * 
 	 * @param objects
+	 *            the List objects received
 	 * @param root
-	 * @param documentName
+	 *            the root of the document
 	 */
-	public static <T> String _writeXML(ArrayList<T> objects, String root) {
+	public <T> String save(List<T> objects, String root) {
 		String xml = getHeadborard();
 		xml += openElement(root);
 		for (Object o : objects) {
@@ -44,11 +45,12 @@ public class XMLWriter {
 	 * it.
 	 * 
 	 * @param field
+	 *            the
 	 * @param clazz
 	 * @param o
 	 * @return
 	 */
-	private static String getValue(Field field, Class<?> clazz, Object o) {
+	private String getValue(Field field, Class<?> clazz, Object o) {
 		String fieldName = field.getName();
 		for (Method method : clazz.getMethods()) {
 			if (method.getName().toLowerCase().endsWith("get" + fieldName.toLowerCase())) {
@@ -70,24 +72,20 @@ public class XMLWriter {
 	 * @param c
 	 * @return
 	 */
-	public static boolean isClassCollection(Class<?> c) {
+	public boolean isClassCollection(Class<?> c) {
 		return Collection.class.isAssignableFrom(c) || Map.class.isAssignableFrom(c) || c.isArray();
 	}
 
-	// ####################################### METHODS THAT RETURNS STRINGS TO BUILD
-	// XML #######################################
-
-	private static String openElement(String element) {
+	private String openElement(String element) {
 		return "<" + element + ">";
 	}
 
-	private static String closeElement(String element) {
+	private String closeElement(String element) {
 		return "</" + element + ">";
 	}
 
-	private static String getHeadborard() {
+	private String getHeadborard() {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	}
-
 
 }
