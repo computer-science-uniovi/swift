@@ -1,7 +1,5 @@
 package Foundation;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,59 +17,31 @@ public class XMLWriter {
 	 * @param root
 	 * @param documentName
 	 */
-	public static <T> void _writeXML(ArrayList<T> objects, String root, String documentName) {
-		FileWriter fichero = null;
-		PrintWriter pw = null;
-		try {
-			fichero = new FileWriter(documentName + ".xml");
-			pw = new PrintWriter(fichero);
+	public static <T> String _writeXML(ArrayList<T> objects, String root) {
+		String xml = getHeadborard();
+		xml += openElement(root);
+		for (Object o : objects) {
+			Class<?> clazz = o.getClass();
+			String objectName = o.getClass().getSimpleName();
+			xml += openElement(objectName);
 
-			pw.write(getHeadborard());
-			pw.write(lineBreak());
-			pw.write(openElement(root));
-
-			pw.write(lineBreak());
-			pw.write(tab());
-
-			for (Object o : objects) {
-				Class<?> clazz = o.getClass();
-				String objectName = o.getClass().getSimpleName();
-				pw.write(openElement(objectName));
-				pw.write(lineBreak());
-
-				for (Field field : clazz.getDeclaredFields()) {
-					String fieldName = field.getName();
-					pw.write(tab());
-					pw.write(tab());
-					pw.write(openElement(fieldName));
-					pw.write(getValue(field, clazz, o));
-					pw.write(closeElement(fieldName));
-
-					pw.write(lineBreak());
-				}
-				pw.write(tab());
-				pw.write(closeElement(objectName));
-				pw.write(lineBreak());
-				pw.write(tab());
+			for (Field field : clazz.getDeclaredFields()) {
+				String fieldName = field.getName();
+				xml += openElement(fieldName);
+				xml += getValue(field, clazz, o);
+				xml += closeElement(fieldName);
 			}
-			pw.write(lineBreak());
-			pw.write(closeElement(root));
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (null != fichero)
-					fichero.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+			xml += closeElement(objectName);
 		}
+		xml += closeElement(root);
+		return xml;
 	}
 
 	/**
 	 * Returns the value of a generic attribute. You need to specify the class where
 	 * the attribute is located to search the correct method that returns it´s
-	 * value. The object is needed too because you have to invoke that method with it.
+	 * value. The object is needed too because you have to invoke that method with
+	 * it.
 	 * 
 	 * @param field
 	 * @param clazz
@@ -96,6 +66,7 @@ public class XMLWriter {
 
 	/**
 	 * Returns true if the Class that receives inherit from Collection
+	 * 
 	 * @param c
 	 * @return
 	 */
@@ -103,8 +74,9 @@ public class XMLWriter {
 		return Collection.class.isAssignableFrom(c) || Map.class.isAssignableFrom(c) || c.isArray();
 	}
 
-	// ####################################### METHODS THAT RETURNS STRINGS TO BUILD XML	#######################################
-	
+	// ####################################### METHODS THAT RETURNS STRINGS TO BUILD
+	// XML #######################################
+
 	private static String openElement(String element) {
 		return "<" + element + ">";
 	}
@@ -117,12 +89,5 @@ public class XMLWriter {
 		return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
 	}
 
-	private static String lineBreak() {
-		return "\n";
-	}
-
-	private static String tab() {
-		return "\t";
-	}
 
 }
