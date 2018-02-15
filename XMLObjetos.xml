@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Objetos>
-  <Person>
-    <name>Paco</name>
-    <surname>SL8R</surname>
-    <age>18</age>
-  </Person>
-  <Nota>
-    <titulo>Comprar pan</titulo>
-    <descripcion>Comprar pan porque si no no hay</descripcion>
-  </Nota>
+	<Person>
+		<name>Paco</name>
+		<surname>SL8R</surname>
+		<age>18</age>
+	</Person>
+	<Nota>
+		<titulo>Comprar pan</titulo>
+		<descripcion>Comprar pan porque si no no hay</descripcion>
+	</Nota>
+	
 </Objetos>
