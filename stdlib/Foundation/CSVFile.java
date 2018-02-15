@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CSVFile {
-
-	private URL _urlToFile;
+  private URL _urlToFile;
 	private String _separator = "", _terminator = "";
 	private List<CSVRecord> _rows;
 	private String[] _headers;
@@ -176,5 +175,4 @@ public class CSVFile {
 
 		printWriter.close();
 	}
-
 }
