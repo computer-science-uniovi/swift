@@ -9,10 +9,10 @@ public class Person {
 	private String name;
 	private String surname;
 	private int age;
-	//
-	// private String[] hijos = new String[] { "Fegnando", "Triniti", "Neo" };
-	// private ArrayList<String> hijosA = new ArrayList<String>();
-	// private List<String> hijosL = new ArrayList<String>();
+
+	private String[] hijos = new String[] { "Fegnando", "Triniti", "Neo" };
+	private ArrayList<String> hijosA = new ArrayList<String>();
+	private List<String> hijosL = new ArrayList<String>();
 
 	public Person(String name, String surname, int age) {
 		super();
@@ -20,13 +20,13 @@ public class Person {
 		this.surname = surname;
 		this.age = age;
 
-		// hijosA.add("Fer");
-		// hijosA.add("Neo");
-		// hijosA.add("Feo");
-		//
-		// hijosL.add("Fer");
-		// hijosL.add("Neo");
-		// hijosL.add("Feo");
+		hijosA.add("Fer");
+		hijosA.add("Neo");
+		hijosA.add("Feo");
+
+		hijosL.add("Fer");
+		hijosL.add("Neo");
+		hijosL.add("Feo");
 	}
 
 	public Person(String name) {
@@ -61,17 +61,17 @@ public class Person {
 	/**
 	 * @return the hijos
 	 */
-	// public String[] getHijos() {
-	// return hijos;
-	// }
-	//
-	// /**
-	// * @param hijos
-	// * the hijos to set
-	// */
-	// public void setHijos(String[] hijos) {
-	// this.hijos = hijos;
-	// }
+	public String[] getHijos() {
+		return hijos;
+	}
+
+	/**
+	 * @param hijos
+	 *            the hijos to set
+	 */
+	public void setHijos(String[] hijos) {
+		this.hijos = hijos;
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -80,7 +80,8 @@ public class Person {
 	 */
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", surname=" + surname + ", age=" + age + "]";
+		return "Person [name=" + name + ", surname=" + surname + ", age=" + age + ", hijos=" + Arrays.toString(hijos)
+				+ "]";
 	}
 
 }
